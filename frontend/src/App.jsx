@@ -26,7 +26,13 @@ function App() {
 
       const data = await response.json();
 
-      setResults(data);
+      const sessionId = data.session_id;
+
+      setResults({
+        grayscale: `http://127.0.0.1:5001/outputs/${sessionId}/grayscale.png`,
+        border: `http://127.0.0.1:5001/outputs/${sessionId}/border.png`,
+        silhouette: `http://127.0.0.1:5001/outputs/${sessionId}/silhouette.png`
+      });
       alert("Upload successful");
     } catch(error) {
         console.error(error);
