@@ -1,10 +1,10 @@
-# Logo Processing & Email Delivery System
+ # Logo Processing & Email Delivery System
 
-A full-stack backend service that processes uploaded logos using computer vision, generates multiple transformations, and automatically emails the results — fully automated after upload.
+A full-stack backend service that processes uploaded logos using computer vision, generates multiple transformations, and automatically emails the results after upload.
 
 ---
 
-##  Features
+## 🚀 Features
 
 - Upload PNG / JPG logos (up to 5MB)
 - Automated image processing using OpenCV
@@ -18,7 +18,7 @@ A full-stack backend service that processes uploaded logos using computer vision
 
 ---
 
-##  Tech Stack
+## 🧠 Tech Stack
 
 ### Backend
 - Python
@@ -36,4 +36,22 @@ A full-stack backend service that processes uploaded logos using computer vision
 
 ---
 
-##  Project Structure
+## 📁 Project Structure
+
+```text
+logo-processor/
+│
+├── backend/
+│   ├── app.py
+│   ├── processor.py
+│   ├── email_service.py
+│   ├── uploads/
+│   ├── outputs/
+│   └── venv/
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+└── README.md
