@@ -1,0 +1,25 @@
+:root {
+  --primary: #F56E0D;
+  --bg: #313131;
+  --text-primary: #F5E6C7;
+  --text-secondary: #616161;
+  --secondary: #2B2B2B;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text-primary);
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  flex-direction: column; 
+}
+

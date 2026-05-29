@@ -1,0 +1,102 @@
+body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--bg);
+  font-size: 30px;
+  font-weight: 1000;
+  cursor: pointer;
+  margin-top: 12px;
+  
+}
+
+button:hover {
+    background: var(--text-primary);
+    color: var(--secondary);
+}
+
+button:disabled {
+  background: var(--secondary);
+  color: var(--text-primary);
+  cursor: not-allowed;
+}
+
+h1 {
+    color: var(--primary);
+    font-family: Roboto;
+    font-size: 15ch;
+}
+
+h2 {
+    font-family: Roboto;
+    font-size: 5ch;
+    color: var(--text-secondary);
+}
+
+h3 {
+    font-size: 3.5ch;
+    font-weight: 400;
+    color: var(--text-primary);
+}
+
+p {
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-input-wrapper label {
+  display: inline-block;
+
+  padding: 10px 16px;
+  border-radius: 8px;
+
+  background: var(--bg);
+  color: var(--text-secondary);
+
+  cursor: pointer;
+  font-weight: 1000;
+  font-size: 3ch;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.file-input-wrapper:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+.result-card img {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+
+}
+
+.output {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.result-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+i {
+    color: var(--text-secondary);
+    font-size: 30px;
+}
+
