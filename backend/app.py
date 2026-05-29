@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from processor import generate_grayscale, generate_border, generate_silhouette
+from flask import send_from_directory
 import os
 
 app = Flask(__name__)
@@ -39,13 +40,17 @@ def process_image():
     generate_silhouette(gray_image, silhouette_path)
 
     return jsonify({
-        "message": "Image processed successfully",
-        "filename": file.filename,
-        "grayscale": "generated",
-        "border": "generated",
-        "silhouette": "generated"
-    })
+    "message": "Image processed successfully",
+    "filename": file.filename,
+    "grayscale": "http://127.0.0.1:5000/outputs/grayscale.png",
+    "border": "http://127.0.0.1:5000/outputs/border.png",
+    "silhouette": "http://127.0.0.1:5000/outputs/silhouette.png"
+})
     
+@app.route("/outputs/<filename>")
+def get_output_file(filename):
+
+    return send_from_directory("outputs", filename)
 
 @app.route("/")
 def home():

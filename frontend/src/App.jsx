@@ -3,6 +3,7 @@ import './App.css'
 
 function App() {
   const [file, setFile] = useState(null);
+  const [results, setResults] = useState(null);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -25,7 +26,7 @@ function App() {
 
       const data = await response.json();
 
-      console.log(data);
+      setResults(data);
       alert("Upload successful");
     } catch(error) {
         console.error(error);
@@ -40,6 +41,29 @@ function App() {
       <input type="file" accept=".png,.jpg,.jpeg" onChange={handleFileChange} />
 
       <button onClick={handleSubmit}>Process Image</button>
+
+      {results && (
+        <div>
+
+          <h2>Processed Outputs</h2>
+
+          <div>
+            <h3>Grayscale</h3>
+            <img src={results.grayscale} width="200" />
+          </div>
+
+          <div>
+            <h3>Border</h3>
+            <img src={results.border} width="200" />
+          </div>
+
+          <div>
+            <h3>Silhouette</h3>
+            <img src={results.silhouette} width="200" />
+          </div>
+
+        </div>
+      )}
 
       {file && <p>Selected file: {file.name}</p>}
     </>
