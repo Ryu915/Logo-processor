@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from processor import generate_grayscale
 import os
 
 app = Flask(__name__)
@@ -23,10 +24,18 @@ def process_image():
 
     file.save(filepath)
 
+    # Processing
+
+    # Grayscale
+    grayscale_path = os.path.join("outputs", "grayscale.png")
+    generate_grayscale(filepath, grayscale_path)
+
     return jsonify({
-        "message" : "image uploaded successfully",
-        "filename" : file.filename
+        "message": "Image processed successfully",
+        "filename": file.filename,
+        "grayscale": "generated"
     })
+    
 
 @app.route("/")
 def home():
