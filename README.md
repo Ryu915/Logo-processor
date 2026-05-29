@@ -1,8 +1,12 @@
  # Logo Processing & Email Delivery System
 
-A full-stack backend service that processes uploaded logos using computer vision, generates multiple transformations, and automatically emails the results after upload.
-
 ---
+
+## 🧾 Project Summary
+
+A full-stack image processing system that allows users to upload logos, automatically processes them using computer vision techniques, and delivers multiple transformed outputs via email.
+
+The system demonstrates end-to-end pipeline design including file handling, OpenCV-based image transformations, session-based processing, and automated SMTP email delivery integrated with a React frontend and Flask backend.
 
 ## 🚀 Features
 
@@ -36,6 +40,29 @@ A full-stack backend service that processes uploaded logos using computer vision
 
 ---
 
+## 📦 Dependencies
+
+### Backend
+
+- Python 3.x
+- Flask
+- OpenCV (cv2)
+- NumPy
+- Pillow
+- Flask-CORS
+- SMTP (built-in Python library)
+
+Install backend dependencies:
+
+```bash
+pip install flask opencv-python numpy pillow flask-cors
+```
+### Frontend
+
+- React (Vite)
+- JavaScript
+- CSS
+
 ## 📁 Project Structure
 
 ```text
@@ -56,6 +83,31 @@ logo-processor/
 │
 └── README.md
 ```
+## 🏗️ Architecture Flow
+
+The system follows a simple end-to-end pipeline from upload to email delivery:
+
+```mermaid
+flowchart TD
+    A[User Uploads Image] --> B[React Frontend]
+    B --> C[Flask API /process endpoint]
+    C --> D[Save Image to Session Folder]
+    D --> E[OpenCV Processing Pipeline]
+
+    E --> E1[Grayscale Conversion]
+    E --> E2[Edge Detection - Canny]
+    E --> E3[Silhouette Generation]
+
+    E1 --> F[Output Files Stored]
+    E2 --> F
+    E3 --> F
+
+    F --> G[SMTP Email Service]
+    G --> H[Email Sent with Attachments]
+
+    F --> I[Temporary Cleanup]
+```
+
 
 ## ⚙️ How It Works
 
@@ -76,9 +128,19 @@ logo-processor/
 
 ### POST `/process`
 
-Uploads an image and triggers full processing pipeline.
+Uploads an image and triggers the full processing pipeline.
 
-### Response:
+---
+
+### Request
+
+- Content-Type: `multipart/form-data`
+- Field:
+  - `image` (file) → PNG / JPG image
+
+---
+
+### Response
 
 ```json
 {
@@ -86,14 +148,6 @@ Uploads an image and triggers full processing pipeline.
   "session_id": "uuid",
   "email_status": "sent"
 }
-```
-## 🖥️ Running the Project
-
-### 1. Clone repo
-
-```bash
-git clone https://github.com/<your-username>/logo-processor.git
-cd logo-processor
 ```
 
 ## 🖥️ Running the Project
