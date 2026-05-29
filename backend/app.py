@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from processor import generate_grayscale, generate_border, generate_silhouette
+from email_service import send_email
 from flask import send_from_directory
 import os
 
@@ -39,12 +40,27 @@ def process_image():
     silhouette_path = os.path.join("outputs", "silhouette.png")
     generate_silhouette(gray_image, silhouette_path)
 
+    # Send email
+    attachments = [
+        grayscale_path,
+        border_path,
+        silhouette_path
+    ]
+
+    try:
+        send_email(attachments)
+        email_status = "sent"
+    except Exception as e:
+        print(e)
+        email_status = "failed"
+
     return jsonify({
     "message": "Image processed successfully",
     "filename": file.filename,
-    "grayscale": "http://127.0.0.1:5000/outputs/grayscale.png",
-    "border": "http://127.0.0.1:5000/outputs/border.png",
-    "silhouette": "http://127.0.0.1:5000/outputs/silhouette.png"
+    "grayscale": "http://127.0.0.1:5001/outputs/grayscale.png",
+    "border": "http://127.0.0.1:5001/outputs/border.png",
+    "silhouette": "http://127.0.0.1:5001/outputs/silhouette.png",
+    "email_status": email_status
 })
     
 @app.route("/outputs/<filename>")
@@ -57,4 +73,4 @@ def home():
     return "Flask server running"
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
