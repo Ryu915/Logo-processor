@@ -8,13 +8,38 @@ function App() {
     setFile(event.target.files[0]);
   };
 
+  const handleSubmit = async () => {
+    if (!file) {
+      alert("Please select a file");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/process", {
+        method : "POST",
+        body : formData
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+      alert("Upload successful");
+    } catch(error) {
+        console.error(error);
+        alert("Upload failed");
+    }
+  };
+
   return (
     <>
       <h1>Logo Processor</h1>
 
       <input type="file" accept=".png,.jpg,.jpeg" onChange={handleFileChange} />
 
-      <button>Process Image</button>
+      <button onClick={handleSubmit}>Process Image</button>
 
       {file && <p>Selected file: {file.name}</p>}
     </>

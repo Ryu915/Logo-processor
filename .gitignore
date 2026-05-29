@@ -1,0 +1,18 @@
+# Python
+backend/venv/
+__pycache__/
+*.pyc
+
+# Uploads & outputs
+backend/uploads/
+backend/outputs/
+
+# Environment variables
+.env
+
+# React
+frontend/node_modules/
+frontend/dist/
+
+# macOS
+.DS_Store
